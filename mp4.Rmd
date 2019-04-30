@@ -16,11 +16,11 @@ db <- dbConnect(MySQL(),
                 host = "scidb.smith.edu", 
                 user = "mth292", 
                 password = "RememberPi", 
-                dbname = "yelp")
+                dbname = "airlines")
 knitr::opts_chunk$set(connection = db, max.print = 20)
 ```
 
 ```{sql}
-
+SHOW TABLES;
 ```
 
