@@ -23,15 +23,8 @@ knitr::opts_chunk$set(connection = db, max.print = 20)
 ```
 
 ```{sql}
-<<<<<<< HEAD
-SHOW TABLES
-=======
 SHOW TABLES;
->>>>>>> 7b0f2f6ab0a9fd29246dfc344a8c4367e2eb74f3
 ```
 
-```{r}
-SELECT *
-FROM airports
-```
+
 
