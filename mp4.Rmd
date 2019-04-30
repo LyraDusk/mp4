@@ -2,7 +2,9 @@
 title: "mp4"
 author: "Lauren Meyer"
 date: "4/30/2019"
-output: html_document
+output: 
+  html_document:
+    code_folding: hide
 ---
 
 ```{r setup, include=FALSE}
@@ -22,5 +24,10 @@ knitr::opts_chunk$set(connection = db, max.print = 20)
 
 ```{sql}
 SHOW TABLES;
+```
+
+```{r}
+SELECT *
+FROM airports
 ```
 
