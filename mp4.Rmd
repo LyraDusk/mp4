@@ -22,9 +22,51 @@ db <- dbConnect(MySQL(),
 knitr::opts_chunk$set(connection = db, max.print = 20)
 ```
 
+Neamt's attempting attempts.
+
+## Top 10 Airports With the Most Planes Flying From
+
 ```{sql}
-SHOW TABLES;
+SELECT a.origin, 
+	COUNT(a.carrier) AS flight_count
+FROM airlines.flights a
+WHERE year = 2017
+GROUP BY a.origin
+ORDER BY flight_count DESC
+LIMIT 0,10;
 ```
 
+### With the lowest being...
+```{sql}
+SELECT a.origin, 
+	COUNT(a.carrier) AS flight_count
+FROM airlines.flights a
+WHERE year = 2017
+GROUP BY a.origin
+ORDER BY flight_count
+LIMIT 1;
+```
 
+## Top 10 Airports With the Most Planes Flying To
+
+```{sql}
+SELECT a.origin, 
+	COUNT(a.carrier) AS flight_count
+FROM airlines.flights a
+WHERE year = 2017
+GROUP BY a.dest
+ORDER BY flight_count DESC
+LIMIT 0,10;
+```
+
+### With the lowest being...
+```{sql}
+SELECT a.origin, 
+	COUNT(a.carrier) AS flight_count
+FROM airlines.flights a
+WHERE year = 2017
+GROUP BY a.dest
+ORDER BY flight_count
+LIMIT 1;
+```
 
