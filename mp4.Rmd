@@ -1,6 +1,6 @@
 ---
-title: "mp4"
-author: "Lauren "
+title: "Airport Popularity"
+author: "Lauren Meyer, Carol Milton, Neamat Sabry"
 date: "4/30/2019"
 output: 
   html_document:
@@ -22,8 +22,6 @@ db <- dbConnect(MySQL(),
 knitr::opts_chunk$set(connection = db, max.print = 20)
 ```
 
-Neamt's attempting attempts.
-
 ## Top 10 Airports With the Most Planes Flying From in 2017
 
 ```{sql}
@@ -31,7 +29,7 @@ SELECT a.origin,
 	COUNT(a.carrier) AS flight_count, airports.name
 FROM airlines.flights a
 LEFT JOIN airports ON airports.faa = a.origin
-WHERE year = 2017
+WHERE year = 2017 OR year = 2016
 GROUP BY a.origin
 ORDER BY flight_count DESC
 LIMIT 0,10;
@@ -43,7 +41,7 @@ SELECT a.origin,
 	COUNT(a.carrier) AS flight_count, airports.name
 FROM airlines.flights a
 LEFT JOIN airports ON airports.faa = a.origin
-WHERE year = 2017
+WHERE year = 2017 OR year = 2016
 GROUP BY a.origin
 ORDER BY flight_count
 LIMIT 1;
@@ -53,10 +51,10 @@ LIMIT 1;
 
 ```{sql}
 SELECT a.dest, 
-	COUNT(a.carrier) AS flight_count, airports.name
+	COUNT(a.carrier) AS flight_count, ap.name
 FROM airlines.flights a
-LEFT JOIN airports ON airports.faa = a.dest
-WHERE year = 2017
+LEFT JOIN airlines.airports ap ON ap.faa = a.dest
+WHERE year = 2017 OR year = 2016
 GROUP BY a.dest
 ORDER BY flight_count DESC
 LIMIT 0,10;
@@ -68,7 +66,7 @@ SELECT a.dest,
 	COUNT(a.carrier) AS flight_count, airports.name
 FROM airlines.flights a
 LEFT JOIN airports ON airports.faa = a.dest
-WHERE year = 2017
+WHERE year = 2017 OR year = 2016
 GROUP BY a.dest
 ORDER BY flight_count
 LIMIT 1;
