@@ -1,12 +1,11 @@
 ---
-title: "Airport Popularity"
-author: "Lauren Meyer, Neamat Sabry, Carol Milton"
+title: "mp4"
+author: "Lauren Meyer"
 date: "4/30/2019"
 output: 
   html_document:
     code_folding: hide
 ---
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -25,13 +24,12 @@ knitr::opts_chunk$set(connection = db, max.print = 20)
 
 Neamt's attempting attempts.
 
-## Top 10 Airports With the Most Planes Flying From
+## Top 10 Airports With the Most Planes Flying From in 2017
 
 ```{sql}
 SELECT a.origin, 
-	COUNT(a.carrier) AS flight_count, airports.name
+	COUNT(a.carrier) AS flight_count
 FROM airlines.flights a
-LEFT JOIN airports ON airports.faa = a.origin
 WHERE year = 2017
 GROUP BY a.origin
 ORDER BY flight_count DESC
@@ -41,22 +39,20 @@ LIMIT 0,10;
 ### With the lowest being...
 ```{sql}
 SELECT a.origin, 
-	COUNT(a.carrier) AS flight_count, airports.name
+	COUNT(a.carrier) AS flight_count
 FROM airlines.flights a
-LEFT JOIN airports ON airports.faa = a.origin
 WHERE year = 2017
 GROUP BY a.origin
 ORDER BY flight_count
 LIMIT 1;
 ```
 
-## Top 10 Airports With the Most Planes Flying To
+## Top 10 Airports With the Most Planes Flying To in 2017
 
 ```{sql}
-SELECT a.dest, 
-	COUNT(a.carrier) AS flight_count, airports.name
+SELECT a.origin, 
+	COUNT(a.carrier) AS flight_count
 FROM airlines.flights a
-LEFT JOIN airports ON airports.faa = a.origin
 WHERE year = 2017
 GROUP BY a.dest
 ORDER BY flight_count DESC
@@ -65,14 +61,12 @@ LIMIT 0,10;
 
 ### With the lowest being...
 ```{sql}
-SELECT a.dest, 
-	COUNT(a.carrier) AS flight_count, airports.name
-FROM airlines.flights a 
-LEFT JOIN airports ON airports.faa = a.origin
+SELECT a.origin, 
+	COUNT(a.carrier) AS flight_count
+FROM airlines.flights a
 WHERE year = 2017
 GROUP BY a.dest
 ORDER BY flight_count
 LIMIT 1;
 ```
 
-GitHub repository.^[https://github.com/LyraDusk/mp4.git]
