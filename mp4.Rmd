@@ -1,11 +1,12 @@
 ---
-title: "mp4"
-author: "Lauren Meyer"
+title: "Airport Popularity"
+author: "Lauren Meyer, Neamat Sabry, Carol Milton"
 date: "4/30/2019"
 output: 
   html_document:
     code_folding: hide
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -70,3 +71,4 @@ ORDER BY flight_count
 LIMIT 1;
 ```
 
+GitHub repository.^[https://github.com/LyraDusk/mp4.git]
