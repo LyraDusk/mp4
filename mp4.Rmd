@@ -22,11 +22,11 @@ db <- dbConnect(MySQL(),
 knitr::opts_chunk$set(connection = db, max.print = 20)
 ```
 
-## Top 10 Airports With the Most Planes Flying From in 2017
+## Top 10 Airports With the Most Planes Flown From in 2017
 
 ```{sql}
 SELECT a.origin, 
-	COUNT(a.carrier) AS flight_count, airports.name
+	COUNT(a.flight) AS flight_count, airports.name
 FROM airlines.flights a
 LEFT JOIN airports ON airports.faa = a.origin
 WHERE year = 2017 OR year = 2016
@@ -38,20 +38,20 @@ LIMIT 0,10;
 ### With the lowest being...
 ```{sql}
 SELECT a.origin, 
-	COUNT(a.carrier) AS flight_count, airports.name
+	COUNT(a.flight) AS flight_count, airports.name
 FROM airlines.flights a
 LEFT JOIN airports ON airports.faa = a.origin
 WHERE year = 2017 OR year = 2016
 GROUP BY a.origin
 ORDER BY flight_count
-LIMIT 1;
+LIMIT 2;
 ```
 
-## Top 10 Airports With the Most Planes Flying To in 2017
+## Top 10 Airports With the Most Planes Flown To in 2017
 
 ```{sql}
 SELECT a.dest, 
-	COUNT(a.carrier) AS flight_count, ap.name
+	COUNT(a.flight) AS flight_count, ap.name
 FROM airlines.flights a
 LEFT JOIN airlines.airports ap ON ap.faa = a.dest
 WHERE year = 2017 OR year = 2016
@@ -63,12 +63,12 @@ LIMIT 0,10;
 ### With the lowest being...
 ```{sql}
 SELECT a.dest, 
-	COUNT(a.carrier) AS flight_count, airports.name
+	COUNT(a.flight) AS flight_count, airports.name
 FROM airlines.flights a
 LEFT JOIN airports ON airports.faa = a.dest
 WHERE year = 2017 OR year = 2016
 GROUP BY a.dest
 ORDER BY flight_count
-LIMIT 1;
+LIMIT 2;
 ```
 
