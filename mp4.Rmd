@@ -44,8 +44,10 @@ LEFT JOIN airports ON airports.faa = a.origin
 WHERE year = 2017 OR year = 2016
 GROUP BY a.origin
 ORDER BY flight_count
-LIMIT 2;
+LIMIT 1;
 ```
+
+Flight 2666 headed to LAX in 8th of December, 2017. The flight's arrival was delayed for 61 minutes and then arrived 30 minutes late with Skywest Airlines (OO).
 
 ## Top 10 Airports With the Most Planes Flown To in 2017
 
@@ -69,6 +71,7 @@ LEFT JOIN airports ON airports.faa = a.dest
 WHERE year = 2017 OR year = 2016
 GROUP BY a.dest
 ORDER BY flight_count
-LIMIT 2;
+LIMIT 1;
 ```
 
+This is the same flight (#2666) going back to SWO.
